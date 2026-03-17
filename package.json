@@ -1,0 +1,26 @@
+{
+  "name": "airipay-v7",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AiriPay — Agentic Orchestration Layer for Cross-Border Payments",
+  "workspaces": [
+    "packages/backend",
+    "packages/frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev --workspace=packages/backend",
+    "dev:frontend": "npm run dev --workspace=packages/frontend",
+    "build": "npm run build --workspace=packages/frontend",
+    "start": "npm run start --workspace=packages/backend"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.3",
+    "puppeteer": "^24.37.5",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

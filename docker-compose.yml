@@ -1,0 +1,31 @@
+# AiriPay MVP — Docker Compose
+# Run with: docker compose up --build
+
+services:
+  backend:
+    build:
+      context: ./packages/backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - JWT_SECRET=airipay-docker-dev-secret
+      - RAIL_MODE=mock
+      - DATABASE_PATH=/data/airipay.db
+    volumes:
+      - db-data:/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./packages/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  db-data:
